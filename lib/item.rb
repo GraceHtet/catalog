@@ -21,4 +21,10 @@ class Item
         @label = label
         label.item << self unless @label.nil?
     end
+
+    def can_be_archived?
+        cur_year = Date.today.year
+        publish_year = Date.parse(@publish_date).year
+        cur_year - publish_year > 10
+    end
 end

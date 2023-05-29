@@ -15,5 +15,9 @@ describe Game do
             @game.publish_date = '2012-01-03'
             expect(@game.can_be_archived?).to be_truthy
         end
+        it 'should return false if parent method returns true otherwise' do
+            @game.publish_date = '2022-01-03'
+            expect(@game.can_be_archived?).to be_falsey
+        end
     end
 end

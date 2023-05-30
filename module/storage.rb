@@ -30,6 +30,23 @@ module Storage
     end
   end
 
+  def fetch_games
+    games = fetch_data('./data/game.json')
+    game_arr = []
+    games&.each do |game|
+      game_sample = Game.new(game['publish_date'],game['multiplayer'],game['last_played_at'])
+      game_arr << game_sample
+    end
+    game_arr
+  end
+
+  def fetch_author
+    authors = fetch_data('./data/author.json')
+    authors&.map do |author|
+      Label.new(author['first_name'], author['last_name'])
+    end
+  end
+
   private
 
   def save_data(file_path, data)

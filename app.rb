@@ -49,6 +49,7 @@ class App
     last_played = prompt_data('Last played at: ')
     game = Game.new(game_publish_date,multiplayer,last_played)
     @games << game
+    puts 'Game sucessfully added!'
   end
 
   def exit

@@ -13,12 +13,12 @@ describe 'Book' do
 
   context 'can_be_archived?' do
     it 'should return true if parent method return true' do
-      expect(book_one.can_be_archived?).to be_truthy
-      expect(book_two.can_be_archived?).to be_truthy
+      expect(book_one.instance_eval('can_be_archived?', __FILE__, __LINE__)).to be_truthy
+      expect(book_two.instance_eval('can_be_archived?', __FILE__, __LINE__)).to be_truthy
     end
 
     it 'should return false' do
-      expect(book_three.can_be_archived?).to be_falsy
+      expect(book_three.instance_eval('can_be_archived?', __FILE__, __LINE__)).to be_falsy
     end
   end
 end

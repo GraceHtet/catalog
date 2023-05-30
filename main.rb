@@ -1,7 +1,9 @@
 require_relative 'menu'
+require_relative 'app'
 
 def main
-  menu = Menu.new
+  app = App.new
+  menu = Menu.new(app)
   menu.start_up
 end
 

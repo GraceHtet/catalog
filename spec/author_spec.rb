@@ -11,9 +11,9 @@ describe Author do
   end
   describe '#add_item' do
     it 'should change items length to 1 when we add one item' do
-      item = Item.new('2002-12-04', false)
+      item = Item.new('2002-12-04')
       @author.add_item(item)
-      expect(@author.items.length).to be 1
+      expect(@author.instance_eval { @items }.length).to be 1
     end
   end
 end

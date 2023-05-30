@@ -2,7 +2,7 @@ require_relative '../lib/item'
 
 describe 'Item' do
   before(:each) do
-    @item = Item.new('2002-12-04', false)
+    @item = Item.new('2002-12-04')
   end
 
   context 'initialization' do
@@ -11,12 +11,12 @@ describe 'Item' do
     end
 
     it 'should return true if published_date is older than 10 years' do
-      expect(@item.can_be_archived?).to be_truthy
+      expect(@item.instance_eval('can_be_archived?', __FILE__, __LINE__)).to be_truthy
     end
 
     it 'should change the archived property to true if move_to_archive method have been called' do
       @item.move_to_archive
-      expect(@item.archived).to be_truthy
+      expect(@item.instance_eval { @archived }).to be_truthy
     end
   end
 end

@@ -40,6 +40,11 @@ class App
 
   def add_game
     puts 'Add a game'
+    game_publish_date = prompt_data('Published date: ')
+    multiplayer = prompt_data('Multiplayer: ')
+    last_played = prompt_data('Last played at: ')
+    game = Game.new(game_publish_date,multiplayer,last_played)
+    @games << game
   end
 
   def exit

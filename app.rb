@@ -9,6 +9,7 @@ class App
     @books = []
     @albums = []
     @games = []
+    @authors = []
   end
 
   def list_books; end
@@ -33,7 +34,11 @@ class App
   end
 
   def list_authors
-    puts 'List all authors'
+    return puts 'There is no author in the list yet!' if @authors.empty?
+
+    puts 'The authors in the list:'
+    @authors.each_with_index do |author, idx|
+      puts "#{idx}) #{author.first_name} #{author.last_name}"
   end
 
   def add_book; end

@@ -1,8 +1,8 @@
-require_relative '../music_album'
+require_relative '../lib/music_album'
 
 describe MusicAlbum do
-    album_one = MusicAlbum.new(true, 'Dare', false, '2000-1-13')
-    album_two = MusicAlbum.new(false, 'Dare', false, '2000-1-13')
+    album_one = MusicAlbum.new(true, '2000-1-13', false)
+    album_two = MusicAlbum.new(false, '2000-1-13', false)
     
     context "#new" do
         it "should be an instance of MusicAlbum" do

@@ -1,5 +1,4 @@
 require_relative '../lib/item'
-require_relative '../lib/label'
 
 describe 'Item' do
   before(:each) do

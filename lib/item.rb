@@ -21,7 +21,7 @@ class Item
 
     def label=(label)
         @label = label
-        label.items << self unless label.items.inclue?(self)
+        label.items << self unless label.items.include?(self)
     end
 
     def can_be_archived?

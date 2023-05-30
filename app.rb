@@ -1,4 +1,5 @@
 require_relative './lib/book'
+require_relative './lib/game'
 require_relative './module/storage'
 
 class App
@@ -18,6 +19,9 @@ class App
 
   def list_games
     puts 'List of games'
+    @games.each do |game|
+      puts "[Published Date]: #{game.publish_date} [Multiplayer]: #{game.multiplayer} [Last played at]: #{game.last_played_at}"
+    end
   end
 
   def list_geners

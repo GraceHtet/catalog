@@ -15,7 +15,7 @@ class App
     @albums = fetch_albums || []
     @games = fetch_games || []
     @genres = fetch_genres || []
-    @authors = fetch_authors || []
+    @authors = fetch_author || []
     @labels = fetch_labels || []
   end
 

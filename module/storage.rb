@@ -9,20 +9,17 @@ module Storage
   def save_books(books)
     save_data('./data/book.json', array_to_hash(books))
   end
-  
+
   def save_albums(albums)
     save_data('./data/album.json', array_to_hash(albums))
   end
-
-  def save_extra_details(label, genre, author)
-    save_data('./data/genre.json', array_to_hash(genre))
 
   def save_games(games)
     save_data('./data/game.json', array_to_hash(games))
   end
 
   def save_extra_details(label, genre, author)
-    save_data('./data/genre.json', array_to_hash(genres))
+    save_data('./data/genre.json', array_to_hash(genre))
     save_data('./data/author.json', array_to_hash(author))
     save_data('./data/label.json', array_to_hash(label))
   end
@@ -63,7 +60,7 @@ module Storage
       Genre.new(genre['name'])
     end
   end
-    
+
   def fetch_games
     games = fetch_data('./data/game.json')
     game_arr = []

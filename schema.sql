@@ -24,7 +24,7 @@ CREATE TABLE books (
     genre_id INT REFERENCES genres(id),
     author_id INT REFERENCES authors(id),
     label_id INT REFERENCES labels(id),
-    PRIMARY KEY (id,item_id, genre_id, author_id, label_id)
+    PRIMARY KEY (id, genre_id, author_id, label_id)
 );
 
 -- INSERT INTO authors(first_name, last_name)

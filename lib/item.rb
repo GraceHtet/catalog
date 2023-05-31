@@ -4,10 +4,13 @@ class Item
   attr_accessor :publish_date
   attr_reader :author, :label
 
-  def initialize(publish_date)
+  def initialize(publish_date, label: nil, author: nil, genre: nil)
     @id = Random.rand(1..1000)
     @publish_date = publish_date
     @archived = false
+    @label = label
+    @author = author
+    @genre = genre
   end
 
   def genre=(genre)
@@ -17,12 +20,12 @@ class Item
 
   def author=(author)
     @author = author
-    author.items << self unless @author.instance_eval { @items }.include?(self)
+    author.instance_eval { @items } << self unless @author.instance_eval { @items }.include?(self)
   end
 
   def label=(label)
     @label = label
-    label.items << self unless label.instance_eval { @items }.include?(self)
+    label.instance_eval { @items } << self unless label.instance_eval { @items }.include?(self)
   end
 
   def can_be_archived?

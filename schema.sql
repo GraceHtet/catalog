@@ -21,7 +21,6 @@ CREATE TABLE books (
     archived BOOLEAN,
     pulblisher VARCHAR(255) NOT NULL,
     cover_state VARCHAR(255) NOT NULL,
-    item_id INT REFERENCES items(id),
     genre_id INT REFERENCES genres(id),
     author_id INT REFERENCES authors(id),
     label_id INT REFERENCES labels(id),

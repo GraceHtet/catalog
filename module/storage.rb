@@ -41,7 +41,6 @@ module Storage
   end
 
   def fetch_author
-    
     authors = fetch_data('./data/author.json')
     authors&.map do |author|
       Label.new(author['first_name'], author['last_name'])

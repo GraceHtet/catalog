@@ -1,3 +1,4 @@
+require_relative './music_album'
 class Genre
     attr_reader :name
 
@@ -11,4 +12,19 @@ class Genre
         @items << item
         item.genre = self        
     end
+
+    def to_hash
+        {
+            id: @id,
+            name: name,
+        }
+    end
 end
+
+# p genre = Genre.new('Country')
+# p album = MusicAlbum.new(false, '2000-3-3')
+# genre.add_item(album)
+
+# p genre
+
+# p album

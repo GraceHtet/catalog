@@ -11,8 +11,9 @@ class MusicAlbum < Item
 
   def to_hash
     hash = {
+      id: @id,
       on_spotify: on_spotify,
-      id: @id
+      genre: @genre,
     }
     super.merge(hash)
   end

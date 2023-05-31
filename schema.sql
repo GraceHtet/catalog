@@ -18,7 +18,7 @@ CREATE TABLE labels (
 CREATE TABLE books (
     id SERIAL,
     publish_date DATE NOT NULL,
-    archived BOOLEAN,
+    archived BOOLEAN DEFAULT FALSE,
     pulblisher VARCHAR(255) NOT NULL,
     cover_state VARCHAR(255) NOT NULL,
     genre_id INT REFERENCES genres(id),

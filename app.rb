@@ -6,7 +6,6 @@ require_relative './lib/label'
 require_relative './lib/author'
 require_relative './lib/music_album'
 
-
 class App
   include Storage
 

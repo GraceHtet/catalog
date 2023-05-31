@@ -36,6 +36,7 @@ class App
 
   def add_album
     puts 'Add a music album'
+    prompt_data('')
   end
 
   def add_game

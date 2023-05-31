@@ -1,10 +1,20 @@
 require_relative 'item'
 
 class MusicAlbum < Item
+  attr_accessor :on_spotify
+
   def initialize(on_spotify, publish_date)
     super(publish_date)
     @id = Random.rand(1..1000)
     @on_spotify = on_spotify
+  end
+
+  def to_hash
+    hash = {
+      on_spotify: on_spotify,
+      id: @id
+    }
+    super.merge(hash)
   end
 
   private

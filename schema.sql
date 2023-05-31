@@ -1,9 +1,3 @@
-CREATE TABLE items (
-    id SERIAL PRIMARY KEY,
-    publish_date DATE NOT NULL,
-    archived BOOLEAN
-);
-
 CREATE TABLE genres (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
@@ -23,6 +17,8 @@ CREATE TABLE labels (
 
 CREATE TABLE books (
     id SERIAL,
+    publish_date DATE NOT NULL,
+    archived BOOLEAN,
     pulblisher VARCHAR(255) NOT NULL,
     cover_state VARCHAR(255) NOT NULL,
     item_id INT REFERENCES items(id),

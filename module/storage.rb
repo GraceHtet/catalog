@@ -12,7 +12,7 @@ module Storage
   def save_games(games)
     save_data('./data/game.json', array_to_hash(games))
   end
-  
+
   def save_extra_details(label, _genre, author)
     save_data('./data/author.json', array_to_hash(author))
     save_data('./data/label.json', array_to_hash(label))
@@ -40,7 +40,7 @@ module Storage
     games = fetch_data('./data/game.json')
     game_arr = []
     games&.each do |game|
-      game_sample = Game.new(game['publish_date'],game['multiplayer'],game['last_played_at'])
+      game_sample = Game.new(game['publish_date'], game['multiplayer'], game['last_played_at'])
       extra_to_array(game_sample, game)
       game_arr << game_sample
     end

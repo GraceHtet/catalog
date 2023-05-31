@@ -5,7 +5,7 @@ class Game < Item
   attr_reader :multiplayer
 
   def initialize(publish_date, multiplayer, last_played_at)
-    super(publish_date)
+    super(publish_date, label: nil, author: nil, genre: nil)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end

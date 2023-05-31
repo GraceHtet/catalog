@@ -4,15 +4,16 @@ require_relative './module/storage'
 
 require_relative './lib/label'
 require_relative './lib/author'
+require_relative './lib/music_album'
 
 class App
   include Storage
 
   def initialize
     @books = fetch_books || []
-    @albums = []
+    @albums = fetch_albums || []
     @games = fetch_games || []
-    @genres = []
+    @genres = fetch_genres || []
     @authors = fetch_author || []
     @labels = fetch_labels || []
   end
@@ -26,7 +27,13 @@ class App
   end
 
   def list_albums
-    puts 'List all music albums'
+    return puts 'There is no album created yet!' if @albums.empty?
+
+    puts 'List of all Albums in the collection:'
+    @albums.each do |album|
+      on_spotify = album.on_spotify == 'y' ? 'Yes' : 'No'
+      puts "Label: #{album.label.title}, Date Published: #{album.publish_date}, On spotify: #{on_spotify}"
+    end
   end
 
   def list_games
@@ -39,8 +46,13 @@ class App
     end
   end
 
-  def list_geners
-    puts 'List all genres'
+  def list_genres
+    return puts 'No genre created yet!' if @genres.empty?
+
+    puts 'List of all Genres in the collection'
+    @genres.each_with_index do |genre, index|
+      puts "#{index}) #{genre.name}"
+    end
   end
 
   def list_labels
@@ -74,6 +86,16 @@ class App
 
   def add_album
     puts 'Add a music album'
+    publish_date = prompt_data('Published Date(YYYY/MM/DD): ')
+    on_spotify = prompt_data('Available on spotify (Y or N)?: ').downcase
+
+    on_spotify = prompt_data('Please input Y or N: ').downcase while on_spotify != 'y' && on_spotify != 'n'
+
+    album = MusicAlbum.new(on_spotify, publish_date)
+    add_extra_details(album)
+    @albums << album
+
+    puts 'Music album created sucessfully'
   end
 
   def add_game
@@ -89,6 +111,7 @@ class App
 
   def exit
     save_books(@books)
+    save_albums(@albums)
     save_games(@games)
     save_extra_details(@labels, @genres, @authors)
     puts 'Thanks for using our app'
@@ -106,15 +129,19 @@ class App
     last_name = prompt_data("Add Author's Last Name: ")
     title = prompt_data('Add Title: ')
     color = prompt_data('Choose Color: ')
+    genre_name = prompt_data('What is its Genre name: ')
 
     label = Label.new(title, color)
     author = Author.new(first_name, last_name)
+    genre = Genre.new(genre_name)
 
     store_extra_details(label, @labels)
     store_extra_details(author, @authors)
+    store_extra_details(genre, @genres)
 
     klass.send(:label=, label)
     klass.send(:author=, author)
+    klass.send(:genre=, genre)
   end
 
   def store_extra_details(klass, array)

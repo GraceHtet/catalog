@@ -5,7 +5,7 @@ class Menu
       1 => { label: 'List all books', action: :list_books },
       2 => { label: 'List all music albums', action: :list_albums },
       3 => { label: 'List of games', action: :list_games },
-      4 => { label: 'List all genres', action: :list_geners },
+      4 => { label: 'List all genres', action: :list_genres },
       5 => { label: 'List all labels', action: :list_labels },
       6 => { label: 'List all authors', action: :list_authors },
       7 => { label: 'Add a book', action: :add_book },

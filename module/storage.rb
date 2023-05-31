@@ -1,6 +1,7 @@
 require 'json'
 require_relative '../lib/book'
 require_relative '../lib/label'
+require_relative '../lib/genre'
 require_relative '../lib/game'
 require_relative '../lib/author'
 
@@ -9,13 +10,16 @@ module Storage
     save_data('./data/book.json', array_to_hash(books))
   end
 
+  def save_albums(albums)
+    save_data('./data/album.json', array_to_hash(albums))
+  end
+
   def save_games(games)
     save_data('./data/game.json', array_to_hash(games))
   end
 
-  def save_extra_details(label, _genre, author)
-    # save_data('./data/book.json', array_to_hash(books))
-
+  def save_extra_details(label, genre, author)
+    save_data('./data/genre.json', array_to_hash(genre))
     save_data('./data/author.json', array_to_hash(author))
     save_data('./data/label.json', array_to_hash(label))
   end
@@ -35,6 +39,25 @@ module Storage
     labels = fetch_data('./data/label.json')
     labels&.map do |label|
       Label.new(label['title'], label['color'])
+    end
+  end
+
+  def fetch_albums
+    albums = fetch_data('./data/album.json')
+    albums_arr = []
+    albums&.each do |album|
+      album_sample = MusicAlbum.new(album['on_spotify'], album['publish_date'])
+      extra_to_array(album_sample, album)
+      albums_arr << album_sample
+    end
+
+    albums_arr
+  end
+
+  def fetch_genres
+    genres = fetch_data('./data/genre.json')
+    genres&.map do |genre|
+      Genre.new(genre['name'])
     end
   end
 
@@ -77,7 +100,9 @@ module Storage
   def extra_to_array(klass, data)
     label = Label.new(data['label']['title'], data['label']['color'])
     author = Author.new(data['author']['first_name'], data['author']['last_name'])
+    genre = Genre.new(data['name'])
     klass.send(:label=, label)
     klass.send(:author=, author)
+    klass.send(:genre=, genre)
   end
 end

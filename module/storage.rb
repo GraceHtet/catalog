@@ -48,14 +48,9 @@ module Storage
 
   def fetch_genres
     genres = fetch_data('./data/genre.json')
-    genres_arr = []
-    genres&.each do |genre|
-      genre_sample = Genre.new(genre['name'])
-      extra_to_array(genre_sample, genre)
-      genres_arr << genre_sample
+    genres&.map do |genre|
+      Genre.new(genre['name'])
     end
-
-    genres_arr
   end
 
   private

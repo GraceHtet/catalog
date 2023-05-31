@@ -20,11 +20,3 @@ class Genre
     }
   end
 end
-
-# p genre = Genre.new('Country')
-# p album = MusicAlbum.new(false, '2000-3-3')
-# genre.add_item(album)
-
-# p genre
-
-# p album

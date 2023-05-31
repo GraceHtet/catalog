@@ -29,7 +29,8 @@ class App
 
     puts 'List of all Albums in the collection:'
     @albums.each do |album|
-      puts "Label: #{album.label.title}, Date Published: #{album.publish_date}, On spotify?: #{album.on_spotify?}"
+      on_spotify = album.on_spotify == 'y' ? 'Yes' : 'No'
+      puts "Label: #{album.label.title}, Date Published: #{album.publish_date}, On spotify: #{on_spotify}"
     end
   end
 
@@ -89,7 +90,7 @@ class App
   end
 
   def exit
-    save_books(@books, @genres)
+    save_books(@books, @albums)
     save_extra_details(@labels, @genres, @authors)
     puts 'Thanks for using our app'
   end
@@ -106,11 +107,11 @@ class App
     last_name = prompt_data("Add Author's Last Name: ")
     title = prompt_data('Add Title: ')
     color = prompt_data('Choose Color: ')
-    genre = prompt_data('What is its Genre?: ')
+    genre_name = prompt_data('What is its Genre name: ')
 
     label = Label.new(title, color)
     author = Author.new(first_name, last_name)
-    genre = Genre.new(genre)
+    genre = Genre.new(genre_name)
 
     store_extra_details(label, @labels)
     store_extra_details(author, @authors)

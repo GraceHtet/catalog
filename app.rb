@@ -26,8 +26,8 @@ class App
 
   def list_albums
     return puts 'There is no album created yet!' if @albums.empty?
-    
-    puts "List of all Albums in the collection:"
+
+    puts 'List of all Albums in the collection:'
     @albums.each do |album|
       puts "Label: #{album.label.title}, Date Published: #{album.publish_date}, On spotify?: #{album.on_spotify?}"
     end
@@ -75,9 +75,7 @@ class App
     publish_date = prompt_data('Published Date(YYYY/MM/DD): ')
     on_spotify = prompt_data('Available on spotify (Y or N)?: ').downcase
 
-    while on_spotify != 'y' && on_spotify != 'n'
-      on_spotify = prompt_data('Please input Y or N: ').downcase
-    end
+    on_spotify = prompt_data('Please input Y or N: ').downcase while on_spotify != 'y' && on_spotify != 'n'
 
     album = MusicAlbum.new(on_spotify, publish_date)
     add_extra_details(album)
@@ -109,7 +107,7 @@ class App
     title = prompt_data('Add Title: ')
     color = prompt_data('Choose Color: ')
     genre = prompt_data('What is its Genre?: ')
-    
+
     label = Label.new(title, color)
     author = Author.new(first_name, last_name)
     genre = Genre.new(genre)

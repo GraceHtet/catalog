@@ -13,7 +13,7 @@ class MusicAlbum < Item
     hash = {
       id: @id,
       on_spotify: on_spotify,
-      genre: @genre,
+      genre: @genre
     }
     super.merge(hash)
   end

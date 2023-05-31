@@ -15,7 +15,7 @@ class Item
 
   def genre=(genre)
     @genre = genre
-    genre.instance_eval {@items} << self unless genre.instance_eval { @items }.include?(self)
+    genre.instance_eval { @items } << self unless genre.instance_eval { @items }.include?(self)
   end
 
   def author=(author)

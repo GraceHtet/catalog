@@ -1,8 +1,11 @@
 require_relative './lib/book'
+require_relative './lib/game'
+require_relative './module/storage'
+
 require_relative './lib/label'
 require_relative './lib/author'
-require_relative './module/storage'
 require_relative './lib/music_album'
+
 
 class App
   include Storage
@@ -10,9 +13,9 @@ class App
   def initialize
     @books = fetch_books || []
     @albums = fetch_albums || []
-    @games = []
+    @games = fetch_games || []
     @genres = fetch_genres || []
-    @authors = []
+    @authors = fetch_authors || []
     @labels = fetch_labels || []
   end
 
@@ -36,6 +39,12 @@ class App
 
   def list_games
     puts 'List of games'
+    @games.each do |game|
+      published_date = game.publish_date
+      multiplayer = game.multiplayer
+      last_played_at = game.last_played_at
+      puts "Published at: #{published_date}, Multiplayer: #{multiplayer}, Last played at: #{last_played_at}"
+    end
   end
 
   def list_genres
@@ -57,7 +66,12 @@ class App
   end
 
   def list_authors
-    puts 'List all authors'
+    return puts 'There is no author in the list yet!' if @authors.empty?
+
+    puts 'The authors in the list:'
+    @authors.each_with_index do |author, idx|
+      puts "#{idx}) #{author.first_name} #{author.last_name}"
+    end
   end
 
   def add_book
@@ -87,10 +101,19 @@ class App
 
   def add_game
     puts 'Add a game'
+    game_publish_date = prompt_data('Published date: ')
+    multiplayer = prompt_data('Multiplayer: ')
+    last_played = prompt_data('Last played at: ')
+    game = Game.new(game_publish_date, multiplayer, last_played)
+    add_extra_details(game)
+    @games << game
+    puts 'A game created successfully :)'
   end
 
   def exit
-    save_books(@books, @albums)
+    save_books(@books)
+    save_albums(@albums)
+    save_games(@games)
     save_extra_details(@labels, @genres, @authors)
     puts 'Thanks for using our app'
   end

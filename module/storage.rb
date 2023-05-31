@@ -2,15 +2,27 @@ require 'json'
 require_relative '../lib/book'
 require_relative '../lib/label'
 require_relative '../lib/genre'
+require_relative '../lib/game'
+require_relative '../lib/author'
 
 module Storage
-  def save_books(books, albums)
+  def save_books(books)
     save_data('./data/book.json', array_to_hash(books))
+  end
+  
+  def save_albums(albums)
     save_data('./data/album.json', array_to_hash(albums))
   end
 
   def save_extra_details(label, genre, author)
     save_data('./data/genre.json', array_to_hash(genre))
+
+  def save_games(games)
+    save_data('./data/game.json', array_to_hash(games))
+  end
+
+  def save_extra_details(label, genre, author)
+    save_data('./data/genre.json', array_to_hash(genres))
     save_data('./data/author.json', array_to_hash(author))
     save_data('./data/label.json', array_to_hash(label))
   end
@@ -23,7 +35,6 @@ module Storage
       extra_to_array(book_sample, book)
       book_arr << book_sample
     end
-
     book_arr
   end
 
@@ -50,6 +61,24 @@ module Storage
     genres = fetch_data('./data/genre.json')
     genres&.map do |genre|
       Genre.new(genre['name'])
+    end
+  end
+    
+  def fetch_games
+    games = fetch_data('./data/game.json')
+    game_arr = []
+    games&.each do |game|
+      game_sample = Game.new(game['publish_date'], game['multiplayer'], game['last_played_at'])
+      extra_to_array(game_sample, game)
+      game_arr << game_sample
+    end
+    game_arr
+  end
+
+  def fetch_author
+    authors = fetch_data('./data/author.json')
+    authors&.map do |author|
+      Author.new(author['first_name'], author['last_name'])
     end
   end
 

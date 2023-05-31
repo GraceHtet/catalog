@@ -27,6 +27,18 @@ CREATE TABLE books (
     PRIMARY KEY (id, genre_id, author_id, label_id)
 );
 
+CREATE TABLE games (
+    id SERIAL,
+    publish_date DATE NOT NULL,
+    archived BOOLEAN DEFAULT FALSE,
+    multiplayer VARCHAR(255) NOT NULL,
+    last_played_at DATE NOT NULL,
+    genre_id INT REFERENCES genres(id),
+    author_id INT REFERENCES authors(id),
+    label_id INT REFERENCES labels(id),
+    PRIMARY KEY (id, genre_id, author_id, label_id)
+);
+
 -- INSERT INTO authors(first_name, last_name)
 -- VALUES ('mil','grace'),
 -- ('aung','swe');

@@ -3,7 +3,7 @@ require_relative '../lib/item'
 
 describe 'Label' do
   before(:each) do
-    @label_one = Label.new('Gone with the wind', 'yellow')
+    @label_one = Label.new('Gift', 'yellow')
     @item_one = Item.new('2020-12-10')
 
     @label_one.add_item(@item_one)

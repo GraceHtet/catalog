@@ -38,3 +38,13 @@ CREATE TABLE games (
     label_id INT REFERENCES labels(id),
     PRIMARY KEY (id, genre_id, author_id, label_id)
 );
+
+CREATE TABLE albums (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    publish_date DATE NOT NULL,
+    on_spotify BOOLEAN DEFAULT FALSE,
+    archived BOOLEAN DEFAULT FALSE,
+    genre_id INT REFERENCES genres(id),
+    author_id INT REFERENCES authors(id),
+    label_id INT REFERENCES labels(id),
+)

@@ -21,3 +21,6 @@ VALUES ('moh moh','good',1,2,1,2),
 insert into games(publish_date,multiplayer,last_played_at,genre_id,author_id,label_id) 
 values ('2022-03-09','COD','2022-04-10',1,1,2);
 
+INSERT INTO albums(publish_date, on_spotify, genre_id, author_id, label_id)
+VALUES ('2000-3-5', FALSE, 1, 1, 1)
+('2006-11-6', TRUE, 1, 2, 2)

@@ -10,6 +10,17 @@ class Game < Item
     @last_played_at = last_played_at
   end
 
+  def to_hash
+    hash = {
+      multiplayer: @multiplayer,
+      last_played_at: @last_played_at,
+      label: @label.to_hash,
+      author: @author.to_hash,
+      id: @id
+    }
+    super.merge(hash)
+  end
+
   private
 
   def can_be_archived?

@@ -1,6 +1,8 @@
 require 'json'
 require_relative '../lib/book'
 require_relative '../lib/label'
+require_relative '../lib/game'
+require_relative '../lib/author'
 
 module Storage
   def save_books(books)
@@ -39,6 +41,7 @@ module Storage
     game_arr = []
     games&.each do |game|
       game_sample = Game.new(game['publish_date'],game['multiplayer'],game['last_played_at'])
+      extra_to_array(game_sample, game)
       game_arr << game_sample
     end
     game_arr
@@ -47,7 +50,7 @@ module Storage
   def fetch_author
     authors = fetch_data('./data/author.json')
     authors&.map do |author|
-      Label.new(author['first_name'], author['last_name'])
+      Author.new(author['first_name'], author['last_name'])
     end
   end
 

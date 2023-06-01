@@ -7,16 +7,6 @@ require_relative '../lib/game'
 require_relative '../lib/author'
 
 module Storage
-  def check_data_files
-    FileUtils.mkdir_p('./data')
-    File.open('./data/book.json', 'w') unless File.exist?('./data/book.json')
-    File.open('./data/album.json', 'w') unless File.exist?('./data/album.json')
-    File.open('./data/game.json', 'w') unless File.exist?('./data/game.json')
-    File.open('./data/genre.json', 'w') unless File.exist?('./data/genre.json')
-    File.open('./data/author.json', 'w') unless File.exist?('./data/author.json')
-    File.open('./data/label.json', 'w') unless File.exist?('./data/label.json')
-  end
-
   def save_books(books)
     save_data('./data/book.json', array_to_hash(books))
   end
@@ -98,6 +88,9 @@ module Storage
   end
 
   def fetch_data(file_path)
+    FileUtils.mkdir_p(File.dirname(file_path))
+    File.new(file_path, 'w+') unless File.exist?(file_path)
+
     return nil if File.empty?(file_path)
 
     json_data = File.read(file_path)

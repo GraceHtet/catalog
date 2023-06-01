@@ -10,6 +10,7 @@ class App
   include Storage
 
   def initialize
+    check_data_files
     @books = fetch_books || []
     @albums = fetch_albums || []
     @games = fetch_games || []

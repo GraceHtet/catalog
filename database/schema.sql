@@ -46,3 +46,13 @@ CREATE TABLE albums (
     author_id INT REFERENCES authors(id),
     label_id INT REFERENCES labels(id)
 )
+
+CREATE INDEX books_genre_id ON books (genre_id);
+CREATE INDEX books_author_id ON books (author_id);
+CREATE INDEX books_label_id ON books (label_id);
+CREATE INDEX games_genre_id ON games (genre_id);
+CREATE INDEX games_author_id ON games (author_id);
+CREATE INDEX games_label_id ON games (label_id);
+CREATE INDEX albums_genre_id ON albums (genre_id);
+CREATE INDEX albums_author_id ON albums (author_id);
+CREATE INDEX albums_label_id ON albums (label_id);

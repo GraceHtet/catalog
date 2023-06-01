@@ -1,4 +1,5 @@
 require 'json'
+require 'fileutils'
 require_relative '../lib/book'
 require_relative '../lib/label'
 require_relative '../lib/genre'
@@ -87,6 +88,9 @@ module Storage
   end
 
   def fetch_data(file_path)
+    FileUtils.mkdir_p(File.dirname(file_path))
+    File.new(file_path, 'w+') unless File.exist?(file_path)
+
     return nil if File.empty?(file_path)
 
     json_data = File.read(file_path)

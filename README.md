@@ -27,6 +27,8 @@
 
 Catalog is a console app built with Ruby. The app helps to keep a record of different types of things a user own: books, music albums, movies, and games.
 
+[Project Video](https://drive.google.com/file/d/1fBWwVoO9v3Mb6MrTngdTTsPN7AGVQzD1/view?usp=drive_link)
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
